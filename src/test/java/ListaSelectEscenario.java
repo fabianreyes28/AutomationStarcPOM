@@ -11,6 +11,7 @@ import java.util.List;
 
 public class ListaSelectEscenario {
     private WebDriver driver;
+    public static int fila=2;
 
 
     //private By listScenario=By.cssSelector( "select[ng-model='sc.selectedScenario']" );
@@ -20,20 +21,38 @@ public class ListaSelectEscenario {
 
     public ListaSelectEscenario(WebDriver driver) {
         this.driver=driver;
+
     }
 
-
-    public void seleccionarScenario() throws IOException, InterruptedException {
+    int tamañoListEsc=0;
+    int veces=1;
+    public List <WebElement> listaCompleta;
+    public void listaScenario() throws IOException, InterruptedException {
         new WebDriverWait(driver, 80).until( ExpectedConditions.elementToBeClickable(listScenario));
-        new WebDriverWait(driver, 80).until(ExpectedConditions.elementToBeClickable(crediAgil)).click();
-
-       /* Select seleccionar=new Select( driver.findElement(listScenario) );
-        List<WebElement> listaCompleta= seleccionar.getOptions();
+        if(veces==1) {
+            new WebDriverWait( driver, 80 ).until( ExpectedConditions.elementToBeClickable( crediAgil ) ).click();
+            veces++;
+        }
+        Select seleccionar=new Select( driver.findElement(listScenario) );
+        listaCompleta= seleccionar.getOptions();
         System.out.println(listaCompleta.size());
-        System.out.println(listaCompleta.get( posi ).getText());
-
-        */
+        tamañoListEsc=listaCompleta.size();
+        //System.out.println(listaCompleta.get( posi ).getText());
 
 
     }
+
+    int getTamañoListEsc(){
+
+        return tamañoListEsc;
+    }
+
+    public void recorriendoListaScenario(int posi){
+        new WebDriverWait(driver, 80).
+                until(ExpectedConditions.elementToBeClickable(listaCompleta.get( posi ))).click();
+
+
+
+    }
+
 }

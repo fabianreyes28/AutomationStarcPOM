@@ -62,13 +62,13 @@ public class ListCasos {
 
             //String searchText = leerExcel.getCellValue( filepath,"NCR-VENTAS",3,11 );
             //System.out.println( "leyendo excel: " + searchText );
-            int f=2;
 
-            //fila = j++;
+
+            fila ++;
             String searchText = leerExcel.getCellValue
-                    ( filepath, "NCR-VENTAS", f+i, 11 );
-            System.out.println( "leyendo excel: " + searchText );
-            System.out.println( "fila del excel " + f+i );
+                    ( filepath, "NCR-VENTAS", fila, 11 );
+            System.out.println( "fila "+fila +"--> "+ searchText );
+           // System.out.println( "fila del excel " + f+i );
             String NO= "NO";
             Boolean entrar= true;
             if (searchText.equals(NO)) {
@@ -131,13 +131,13 @@ public class ListCasos {
                 driver.findElement( texarea_cajita2 ).clear();
 
                 //System.out.println( "leyendo excel: " + searchText );
-                System.out.println( "leyendo excel: fila:" + f+i + ", columna:11 ==>>" + searchText );
+                //System.out.println( "leyendo excel: fila:" + fila + ", columna:11 ==>>" + searchText );
                 driver.findElement( texarea_cajita2 ).sendKeys( searchText );
 
 
                 //------SE TERMINA DE LEER EL EXCEL------///
                 // driver.findElement( texarea_cajita2 ).sendKeys( searchText );
-                System.out.println("caso "+i);
+                System.out.println("caso de starc: "+i);
                 Thread.sleep( 3000 );
                 driver.close();
                 driver.switchTo().window( newTab.get( 0 ) );

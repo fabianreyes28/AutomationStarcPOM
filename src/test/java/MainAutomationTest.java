@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 
 public class MainAutomationTest {
     private WebDriver driver;
@@ -28,32 +29,33 @@ public class MainAutomationTest {
 
     @Test
     public void testStarc() throws InterruptedException, IOException {
-        iniciarPage = new IniciarSesionPage(driver);
+        iniciarPage = new IniciarSesionPage( driver );
         iniciarPage.iniciarSesion();
 
-        menuSelectVentas=new MenuSelectVentas( driver );
+        menuSelectVentas = new MenuSelectVentas( driver );
         menuSelectVentas.seleccionarLista();
 
-        menuSelectTesCase=new  MenuSelectTesCase( driver );
+        menuSelectTesCase = new MenuSelectTesCase( driver );
         menuSelectTesCase.SelectMenu();
 
-        listaSelectProject=new ListaSelectProject( driver );
+        listaSelectProject = new ListaSelectProject( driver );
         listaSelectProject.selectProject();
 
-        listaSelectRequerimiento=new ListaSelectRequerimiento( driver );
+        listaSelectRequerimiento = new ListaSelectRequerimiento( driver );
         listaSelectRequerimiento.seleccionarRequerimiento();
 
-        listaSelectEscenario=new ListaSelectEscenario( driver );
-        listaSelectEscenario.seleccionarScenario();
+        listaSelectEscenario = new ListaSelectEscenario( driver );
+        listaSelectEscenario.listaScenario();
 
-        listCasos =new ListCasos( driver );
-        listCasos.recorriendoCasos();
+        System.out.println( "tamaño de la lista de esc-->" + listaSelectEscenario.getTamañoListEsc() );
 
+        for (int i=1;i<=listaSelectEscenario.getTamañoListEsc();i++) {
 
+            listaSelectEscenario.recorriendoListaScenario( i );
 
-
-
-
+            listCasos = new ListCasos( driver );
+            listCasos.recorriendoCasos();
+        }
 
     }
 
